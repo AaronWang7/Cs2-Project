@@ -1,5 +1,5 @@
 # File to store the tasks
-TODO_list_FILE = 'Movie recomander/to_do_list/to_do_list.txt'
+TODO_list_FILE = 'To do list/To_do_list.txt'
 
 def load_tasks():
     """Load tasks from the file into a list."""
