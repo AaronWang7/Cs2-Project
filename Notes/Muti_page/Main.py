@@ -6,4 +6,3 @@ def info():
     return "Andrew", 35, "orange"
 
 naem, age, color = info()
-print(info(naem))
