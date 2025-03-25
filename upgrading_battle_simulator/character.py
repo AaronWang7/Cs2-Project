@@ -17,7 +17,7 @@ class FantasyStoryProvider(BaseProvider):
         ]
         return " ".join(random.sample(elements, k=3)) + f" {fake.paragraph()}"
 
-CSV_FOLDER = "upgrading_battle_simulator/data"
+CSV_FOLDER = "upgrading_battle_simulator/"
 CSV_FILE = os.path.join(CSV_FOLDER, "characters.csv")
 fake = Faker()
 fake.add_provider(FantasyStoryProvider)
