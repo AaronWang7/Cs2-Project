@@ -1,9 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Mar 23 17:28:52 2025
 
-@author: shouweis
-"""
 
 from character import create_character, load_characters, save_character, CSV_FILE
 from battle import battle
@@ -13,31 +8,25 @@ import pandas as pd
 import easygui as eg
 
 def analyze_characters():
-    """
-    Analyze character attribute data and generate statistical report
-    Parameters:
-        No explicit parameters (implicitly relies on load_characters() data)
+    
+    #Analyze character attribute data and create report
  
-    Returns:
-        None (displays results via GUI dialogs)
  
-    Exception Handling:
-        - Catches KeyError for missing data fields with specific error messages
-        - Uses easygui library for GUI interactions (imported as eg)
+    #Exception Handling:
+        # Catches Error for missing data with error messages
+        # Uses easygui for user choice
  
-    Statistical Metrics:
-        - Mean: Average attribute value
-        - Median: Middle value of attribute distribution
-        - Min/Max: Attribute value boundaries
-        - All values rounded to two decimal places
+    #Mean, med and min/max:
+        #Mean: Average attribute value
+        # Median: Middle value of attribute distribution
+        # Min/Max: Attribute value boundaries
  
-    Dependencies:
-        - pandas (for data processing)
-        - easygui (for GUI operations, must be imported as eg)
-    """
+        # pandas for data processing
+        # easygui for UI operations
     characters = load_characters()
     if not characters:
-        eg.msgbox("No character data available for analysis", "Analysis Error")
+        # A function of easygui can let users see information in a more interesting form
+        eg.msgbox("No character data available for analysis")
         return
     
     df = pd.DataFrame(characters)
@@ -61,18 +50,11 @@ def analyze_characters():
         eg.msgbox(f"Data analysis error: Missing required field {e}", "Error")
 
 def show_characters_virtual():
-    """
-    Visualizes character attributes in interactive bar charts
-    Parameters:
-        No explicit parameters (data loaded via load_characters())
 
-    Returns:
-        None (generates matplotlib figures directly)
+    #Visualizes character attributes
 
-    Dependencies:
-        - matplotlib.pyplot (imported as plt)
-        - easygui (imported as eg for message dialogs)
-    """
+        #matplotlib.pyplot (imported as plt)
+        #easygui (imported as eg for message dialogs)
     characters = load_characters()
     if not characters:
         eg.msgbox("No characters found", "Character Display")
@@ -98,13 +80,9 @@ def show_characters_virtual():
         plt.show(block=False)
 
 def save_all_characters(characters):
-    """
-    Saves all character data to a CSV file in structured format
-    Returns:
-        None (performs file I/O operation)
-    Dependencies:
-        - Python's built-in csv module
-    """
+    
+    #Saves all character data to a CSV file
+    
     with open(CSV_FILE, mode='w', newline='') as file:
         writer = csv.writer(file)
         for c in characters:
@@ -128,22 +106,11 @@ def main_menu():
             return 0
 
 def character_selection(characters):
-    """
-    GUI-driven character selection interface requiring two distinct choices
     
-    This function presents users with a numbered list of characters in a dialog box,
-    then repeatedly prompts for input until two valid distinct selections are made.
-    
-    Parameters:
-        characters (list of dict):
-            List containing character dictionaries. Each must have:
-            - 'name' (str): Display name for character
-    Returns:
-        list of int: Indices of selected characters (0-based, adjusted from 1-based input)
-                     Returns None if user cancels selection
-    Dependencies:
-        - easygui module for GUI components
-    """
+    #Presents users with a numbered list of characters
+
+    #easygui for UI
+
     char_list = "\n".join([f"{i+1}. {c['name']}" for i, c in enumerate(characters)])
     while True:
         input_str = eg.enterbox(f"Select two characters.\nSeparate numbers with spaces(for example 1 2):\n{char_list}", 
